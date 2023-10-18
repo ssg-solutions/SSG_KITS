@@ -1,0 +1,81 @@
+C51 COMPILER V8.09   MAIN                                                                  11/15/2008 17:04:12 PAGE 1   
+
+
+C51 COMPILER V8.09, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN MAIN.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE MAIN.C BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          /****************************************************
+   2                 Lesson  : 3
+   3                     Neme    : Button Test
+   4                     Details : 8 buttons are connected to port1, 
+   5                               the initial value of the port is HIGH(1)
+   6                                           when the button is prssed the value is LOW(0)
+   7                                           8 leds are connection to Port2 of the 8051 
+   8                               the Annode are common to VCC while the cathode 
+   9                                           are connected to each pin of the PORT2
+  10                                           when each button is pressed the same currospond 
+  11                                           led at port2 is glow.
+  12          ******************************************************/
+  13          #include<REG51.H>
+  14          //Fuction Prototypes
+  15          void delay(void);
+  16           
+  17          // Program Starts Here
+  18          void main()
+  19          {
+  20   1              P2 = 0xFF; // makes the Port 1 as input port
+  21   1              while(1)
+  22   1              {
+  23   2                  if((P2 & 0x0f) == 0x0e)
+  24   2                      {
+  25   3                      P2= (P2 & 0x0f)| 0xe0;
+  26   3                      delay(); 
+  27   3                      }
+  28   2                      else if ((P2 & 0x0f) == 0x0d)
+  29   2                      {
+  30   3                      P2=(P2 & 0x0f)|0xd0;
+  31   3                      delay();
+  32   3                      }
+  33   2                      else if ((P2 & 0x0f) == 0x0b)
+  34   2                      {
+  35   3                      P2=(P2 & 0x0f)|0xb0;
+  36   3                      delay();
+  37   3                      }
+  38   2                      else if ((P2 & 0x0f) == 0x07)
+  39   2                      {
+  40   3                      P2=(P2 & 0x0f)|0x70;
+  41   3                      delay();
+  42   3                      }
+  43   2                      
+  44   2                      P2=0xff;
+  45   2               }
+  46   1      }
+  47          
+  48          void delay(void)
+  49          {
+  50   1              unsigned int a,b;
+  51   1              for(a=0;a<10;a++)
+  52   1                      {
+  53   2                              for(b=0;b<120;b++)
+  54   2                              ;
+  55   2                      }
+C51 COMPILER V8.09   MAIN                                                                  11/15/2008 17:04:12 PAGE 2   
+
+  56   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    104    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

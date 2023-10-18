@@ -1,0 +1,42 @@
+/*********************************************************************
+       Lesson  : 4
+ 	   Neme    : Button More
+	   Details : 8 buttons are connected to port1, 
+	             the initial value of the port is HIGH(1)
+				 when the button is prssed the value is LOW(0)
+	   			 8 leds are connection to Port2 of the 8051 
+	             the Annode are common to VCC while the cathode 
+				 are connected to each pin of the PORT2
+				 when the switch 1 is pressed the each led is inverted
+**********************************************************************/
+#include<REG51.H>
+//Fuction Prototypes
+void delay(void);
+sbit sw1=P2^0;
+ 
+// Program Starts Here
+void main()
+{
+	P2 = 0xFF; // makes the Port 1 as input port
+	while(1)
+	{
+	 if(sw1 == 0)	//checked the button is pressed or not 0=pressed, 1= not pressed
+	 	{
+		    while(sw1 == 0);
+			P2=(P2 & 0x0f)|0x50;
+			delay();
+		}
+	 	
+	 		P2=(P2 & 0x0f)|0xaf;
+	 }
+}
+
+void delay(void)
+{
+ 	unsigned int a,b;
+ 	for(a=0;a<100;a++)
+		{
+			for(b=0;b<120;b++)
+			;
+		}
+}

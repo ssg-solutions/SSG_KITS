@@ -1,0 +1,95 @@
+C51 COMPILER V8.09   MAIN                                                                  11/15/2008 16:43:57 PAGE 1   
+
+
+C51 COMPILER V8.09, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN MAIN.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE MAIN.C BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1                   /****************************************************
+   2                 Lesson  : 6
+   3                     Neme    : seven segment
+   4                     Details : A seven segment display is connected through a 
+   5                                           7447 ic which is bcd to 7 segment driver IC.
+   6                                           the BCD inputs are connected to port3.4 to
+   7                                           port3.7 of the 8051. the table for 1-9 is
+   8                                           -----------------------------
+   9                                           BCD    |       7 SEGMENT OUTPUT
+  10                                           -----------------------------
+  11                                           0000   |       0
+  12                                           0001   |       1
+  13                                           0010   |       2
+  14                                           0011   |       3
+  15                                           0100   |       4
+  16                                           0101   |       5
+  17                                           0110   |       6
+  18                                           0111   |       7
+  19                                           1000   |       8
+  20                                           1001   |       9
+  21                                           WHEN SW1 IS PRESSED THE COUNTER IN INCREMENTED 
+  22                                           WHEN SW2 IS PRESED THE COUNTER IS DECREMENTED
+  23          ******************************************************/
+  24          #include<REG51.H>
+  25          //Fuction Prototypes
+  26          void delay(void);
+  27          sbit sw1=P2^0;
+  28          sbit sw2=P2^1;
+  29          void delayms(unsigned int tt); 
+  30          // Program Starts Here
+  31          void main()
+  32          {
+  33   1              unsigned char a,b;
+  34   1              P2=0xff;
+  35   1              a=0;
+  36   1              while(1)
+  37   1              {
+  38   2                      if(sw1 == 0)
+  39   2                      {
+  40   3                          delayms(20);
+  41   3                              while(sw1==0);
+  42   3                              a++;
+  43   3                              b=a>>4;
+  44   3                              b |= a<<4;
+  45   3                                                                               
+  46   3                      }
+  47   2                      else if (sw2 == 0)
+  48   2                      {
+  49   3                              delayms(20);
+  50   3                              while(sw2==0);
+  51   3                              if(a>0)
+  52   3                              a--;
+  53   3                              b=a>>4;
+  54   3                              b |= a<<4;
+  55   3                                              
+C51 COMPILER V8.09   MAIN                                                                  11/15/2008 16:43:57 PAGE 2   
+
+  56   3                      }
+  57   2                      P0 = b ;
+  58   2                      
+  59   2              }
+  60   1      }
+  61          
+  62          void delayms(unsigned int tt)
+  63          {
+  64   1              unsigned int a,b;
+  65   1              for(a=0;a<tt;a++)
+  66   1                      {
+  67   2                              for(b=0;b<1275;b++)
+  68   2                              ;
+  69   2                      }
+  70   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     96    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       2
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

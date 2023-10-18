@@ -1,0 +1,279 @@
+C51 COMPILER V9.60.7.0   MAIN                                                              09/18/2023 11:54:03 PAGE 1   
+
+
+C51 COMPILER V9.60.7.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN main.OBJ
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE main.c ROM(SMALL) OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND TABS(2)
+
+line level    source
+
+   1          /****************************************************
+   2                 Lesson  : 14
+   3               Neme    : REAL TIME CLOCK
+   4               Details : The ds1307 is a Real time clock from dallas
+   5                    it has a small 3v battery so the clock setting remains while power off
+   6                  it works on I2C protocal, 
+   7                  for more detail please see its Datasheet
+   8          ******************************************************/
+   9          #include<reg52.h>
+  10          #include<stdio.h>
+  11          #include<intrins.h>
+  12          
+  13          void InitSerial(void);
+  14          void DelayMs(unsigned int count);
+  15          void ReadRTC(unsigned char * buff);
+  16          void WriteRTC(unsigned char * buff);
+  17          char * Int2Day(unsigned char day);
+  18          char * Int2Month(unsigned char month);
+  19          
+  20          #define ACK   1
+  21          #define NO_ACK  0
+  22          #define SLAVE 0xD0
+  23          #define WRITE   0x00
+  24          #define READ    0x01
+  25          #define ERR_ACK 0x01
+  26          
+  27          unsigned char  RTC_ARR[7];  // Buffer for second,minute,.....,year
+  28          unsigned char p;
+  29          unsigned char i;
+  30          
+  31          const unsigned char * DayStr[7]  =     {{"Sun"},
+  32                                {"Mon"},
+  33                                {"Tue"},
+  34                                {"Wed"},
+  35                                {"Thu"},
+  36                                {"Fri"},
+  37                                {"Sat"}};
+  38          
+  39          
+  40          const unsigned char * MonthStr[12]    ={{"Jan"},
+  41                              {"Feb"},
+  42                              {"Mar"},
+  43                              {"Apr"},
+  44                              {"May"},
+  45                              {"Jun"},
+  46                              {"Jul"},
+  47                              {"Aug"},
+  48                              {"Sep"},
+  49                              {"Oct"},
+  50                              {"Nov"},
+  51                              {"Dec"}};
+  52          
+  53          
+  54          sbit SDA  =  P3^6;  // connect to SDA pin (Data)
+  55          sbit SCL  =  P3^7;  // connect to SCL pin (Clock)
+C51 COMPILER V9.60.7.0   MAIN                                                              09/18/2023 11:54:03 PAGE 2   
+
+  56          //---------------------------------------
+  57          // Main program
+  58          //---------------------------------------
+  59          void main(void)
+  60          {
+  61   1      
+  62   1      
+  63   1        InitSerial();     // Initialize serial port
+  64   1        ReadRTC(&RTC_ARR[0]);        
+  65   1      //  RTC_ARR[0] = RTC_ARR[0] & 0x7F; // enable oscillator (bit 7=0)
+  66   1        //RTC_ARR[1] = 0x44;  // minute = 59
+  67   1        //RTC_ARR[2] = 0x11;  // hour = 05 ,24-hour mode(bit 6=0)
+  68   1        //RTC_ARR[3] = 0x02;  // Day = 1 or sunday
+  69   1        //RTC_ARR[4] = 0x18;  // Date = 30
+  70   1        //RTC_ARR[5] = 0x09;  // month = August
+  71   1        //RTC_ARR[6] = 0x23;  // year = 05 or 2005
+  72   1      //  WriteRTC(&RTC_ARR[0]);  // Set RTC
+  73   1      
+  74   1          
+  75   1        while(1)
+  76   1        {
+  77   2          ReadRTC(&RTC_ARR[0]);        
+  78   2          putchar(0x0C);  // clear Hyper terminal
+  79   2          printf("Day  : %s\r\n",Int2Day(RTC_ARR[3]));    
+  80   2                printf("Time : %02bX:%02bX:%02bX\r\n",RTC_ARR[2],RTC_ARR[1],RTC_ARR[0]);      
+  81   2          printf("Data : %02bX-%s-20%02bX",RTC_ARR[4],Int2Month(RTC_ARR[5]),RTC_ARR[6]);          
+  82   2          DelayMs(1000);  // delay about 1 second
+  83   2        }
+  84   1      }
+  85          
+  86          void InitSerial(void)
+  87          {
+  88   1          SCON = 0x50;  // Setup serial port control register Mode 1: 
+  89   1                // 8-bit uart var baud rate REN: enable receiver 
+  90   1        TMOD |= 0x20;   // Set M1 for 8-bit autoreload timer  
+  91   1        TH1 = 0xFD;     // Set autoreload value for timer1 9600 baud 
+  92   1                // with 11.0592 MHz xtal  
+  93   1        TR1 = 1;        // Start timer 1  
+  94   1        TI = 1;         // Set TI to indicate ready to xmit
+  95   1      }
+  96          void DelayMs(unsigned int count) 
+  97          {  
+  98   1          unsigned int i;             
+  99   1          while(count) 
+ 100   1        {
+ 101   2              i = 115; 
+ 102   2          while(i>0) i--;
+ 103   2              count--;
+ 104   2          }
+ 105   1      }
+ 106          
+ 107          
+ 108          
+ 109          //-------------------------------
+ 110          // Convert BCD 1 byte to HEX 1 byte
+ 111          //-------------------------------
+ 112          unsigned char BCD2HEX(unsigned int BCD)
+ 113          {
+ 114   1        unsigned char temp;
+ 115   1        temp=((BCD>>8)*100)|((BCD>>4)*10)|(BCD&0x0f);
+ 116   1        return temp;
+ 117   1        
+C51 COMPILER V9.60.7.0   MAIN                                                              09/18/2023 11:54:03 PAGE 3   
+
+ 118   1      }
+ 119          
+ 120          //-------------------------------
+ 121          // start I2C
+ 122          //-------------------------------
+ 123          void Start(void)
+ 124          {
+ 125   1          SDA = 1;
+ 126   1        SCL = 1;
+ 127   1        _nop_();_nop_();
+ 128   1        SDA = 0;
+ 129   1        _nop_();_nop_();
+ 130   1        SCL = 0;
+ 131   1        _nop_();_nop_();
+ 132   1      }
+ 133          
+ 134          //-------------------------------
+ 135          // stop I2C
+ 136          //-------------------------------
+ 137          void Stop(void)
+ 138          {
+ 139   1        SDA = 0;        
+ 140   1        _nop_();_nop_();
+ 141   1        SCL = 1;
+ 142   1        _nop_();_nop_();
+ 143   1        SDA = 1;  
+ 144   1      }
+ 145          
+ 146          //-------------------------------
+ 147          // Write I2C
+ 148          //-------------------------------
+ 149          void WriteI2C(unsigned char Data)
+ 150          {    
+ 151   1      
+ 152   1        for (i=0;i<8;i++)
+ 153   1        {
+ 154   2              SDA = (Data & 0x80) ? 1:0;
+ 155   2          SCL=1;SCL=0;
+ 156   2          Data<<=1;
+ 157   2        }
+ 158   1      
+ 159   1          SCL = 1; 
+ 160   1        _nop_();_nop_();
+ 161   1        SCL = 0;
+ 162   1      
+ 163   1      }
+ 164          
+ 165          //-------------------------------
+ 166          // Read I2C
+ 167          //-------------------------------
+ 168          unsigned char ReadI2C(bit ACK_Bit)
+ 169          {
+ 170   1          
+ 171   1          unsigned char Data=0;
+ 172   1      
+ 173   1          SDA = 1;  
+ 174   1        for (i=0;i<8;i++)
+ 175   1        {
+ 176   2          SCL   = 1;    
+ 177   2          Data<<= 1;
+ 178   2          Data  = (Data | SDA);   
+ 179   2          SCL   = 0;
+C51 COMPILER V9.60.7.0   MAIN                                                              09/18/2023 11:54:03 PAGE 4   
+
+ 180   2          _nop_();
+ 181   2        }
+ 182   1          
+ 183   1        if (ACK_Bit == 1)
+ 184   1        SDA = 0; // Send ACK    
+ 185   1        else    
+ 186   1        SDA = 1; // Send NO ACK       
+ 187   1      
+ 188   1        _nop_();_nop_();
+ 189   1        SCL = 1;    
+ 190   1        _nop_();_nop_();
+ 191   1        SCL = 0;
+ 192   1        
+ 193   1        return Data;
+ 194   1      }
+ 195          
+ 196          //-------------------------------
+ 197          // Read RTC (all real time)
+ 198          //-------------------------------
+ 199          void ReadRTC(unsigned char * buff)
+ 200          {
+ 201   1        
+ 202   1        
+ 203   1        Start();
+ 204   1        WriteI2C(0xD0);
+ 205   1        WriteI2C(0x00);
+ 206   1      
+ 207   1        Start();
+ 208   1        WriteI2C(0xD1); 
+ 209   1        *(buff+0)=ReadI2C(ACK); // Second
+ 210   1        *(buff+1)=ReadI2C(ACK); // Minute
+ 211   1        *(buff+2)=ReadI2C(ACK); // hour
+ 212   1        *(buff+3)=ReadI2C(ACK); // Day
+ 213   1        *(buff+4)=ReadI2C(ACK); // date
+ 214   1        *(buff+5)=ReadI2C(ACK); // month
+ 215   1        *(buff+6)=ReadI2C(NO_ACK);  // year
+ 216   1        Stop();   
+ 217   1      }
+ 218          
+ 219          //-------------------------------
+ 220          // Write RTC
+ 221          //-------------------------------
+ 222          void WriteRTC(unsigned char *buff)
+ 223          {
+ 224   1      
+ 225   1        Start();
+ 226   1        WriteI2C(0xD0);
+ 227   1        WriteI2C(0x00); 
+ 228   1        WriteI2C(*(buff+0));  
+ 229   1        WriteI2C(*(buff+1));
+ 230   1        WriteI2C(*(buff+2));
+ 231   1        WriteI2C(*(buff+3));
+ 232   1        WriteI2C(*(buff+4));
+ 233   1        WriteI2C(*(buff+5));
+ 234   1        WriteI2C(*(buff+6));  
+ 235   1        Stop(); 
+ 236   1      }
+ 237          
+ 238          
+ 239          char * Int2Day(unsigned char day)
+ 240          {
+ 241   1        return DayStr[day-1];
+C51 COMPILER V9.60.7.0   MAIN                                                              09/18/2023 11:54:03 PAGE 5   
+
+ 242   1      }
+ 243          
+ 244          
+ 245          char * Int2Month(unsigned char month)
+ 246          {
+ 247   1        return MonthStr[BCD2HEX(month)-1];
+ 248   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    437    ----
+   CONSTANT SIZE    =    139    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     66    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----       1
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

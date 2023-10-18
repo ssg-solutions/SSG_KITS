@@ -1,0 +1,112 @@
+C51 COMPILER V8.09   MAIN                                                                  11/15/2008 16:00:01 PAGE 1   
+
+
+C51 COMPILER V8.09, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN main.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE main.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          /****************************************************
+   2                 Lesson  : 8
+   3                     Neme    : LCD Interface
+   4                     Details : The LCD has two line and each line has 16 character
+   5                                           the lcd works here 4 bit mode 
+   6                                           the display show "welcome" on first line
+   7                                           and "have a nice day" on second line 
+   8          ******************************************************/
+   9          #include<REG51.H>
+  10          //Fuction Prototypes
+  11          void delay(unsigned int);
+  12          void lcd_string(unsigned char *p);
+  13          void lcd_data(unsigned char );
+  14          void lcd_cmd(unsigned char );
+  15          
+  16          
+  17          sbit EN = P3^2;
+  18          sbit RS = P3^3;
+  19          sbit RW = P3^4;
+  20          sbit light = P3^5;
+  21          
+  22          #define lcddata P1; 
+  23          // Program Starts Here
+  24          void main()
+  25          {
+  26   1      
+  27   1               
+  28   1               light=0; //ON the lcd light
+  29   1               lcd_cmd(0x38);
+  30   1               delay(1);
+  31   1               lcd_cmd(0x06); // display move cursor to right 
+  32   1               delay(1);
+  33   1               lcd_cmd(0x0E); // LCD On, & cursor     on
+  34   1               delay(1);
+  35   1               lcd_cmd(0x01);  // LCD Clear 
+  36   1               delay(1);
+  37   1               lcd_cmd(0x80); // LCD start 1st line
+  38   1               delay(1);
+  39   1               lcd_string("    WELCOME     ");
+  40   1               delay(25);
+  41   1               lcd_cmd(0xc0);  // LCD start 2nd line
+  42   1               delay(1);
+  43   1           lcd_string("HAVE A NICE DAY ");
+  44   1               while(1);
+  45   1              
+  46   1      }
+  47          
+  48          void lcd_string(unsigned char *p)
+  49          {
+  50   1              while(*p != '\0')
+  51   1              {
+  52   2              lcd_data(*p);
+  53   2              p++;
+  54   2              delay(10);
+  55   2              }
+C51 COMPILER V8.09   MAIN                                                                  11/15/2008 16:00:01 PAGE 2   
+
+  56   1      }
+  57          
+  58          void lcd_data(unsigned char x)
+  59          {
+  60   1        RW=0;
+  61   1        RS=1;
+  62   1        P1 = x;
+  63   1        EN=1;
+  64   1        delay(1);
+  65   1        EN=0;
+  66   1       }
+  67          
+  68          void lcd_cmd(unsigned char z)
+  69          {
+  70   1        RW=0;
+  71   1        RS=0;
+  72   1        P1 = z;
+  73   1        EN =1;
+  74   1        delay(1);
+  75   1        EN=0;
+  76   1       }
+  77          
+  78          
+  79          void delay(unsigned int tt)
+  80          {
+  81   1              unsigned int a,b;
+  82   1              for(a=0;a<tt;a++)
+  83   1                      {
+  84   2                              for(b=0;b<1275;b++)
+  85   2                              ;
+  86   2                      }
+  87   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    179    ----
+   CONSTANT SIZE    =     34    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       3
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

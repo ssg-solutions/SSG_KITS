@@ -1,0 +1,127 @@
+C51 COMPILER V8.09   MAIN                                                                  11/16/2008 17:29:50 PAGE 1   
+
+
+C51 COMPILER V8.09, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN MAIN.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE MAIN.C BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include <at89c51xd2.h>
+   2          void show(unsigned char);
+   3          void delay(void);
+   4          sbit col1= P1^7;
+   5          sbit col2= P1^6;
+   6          sbit col3= P1^5;
+   7          sbit col4= P1^4;
+   8          sbit row1= P1^0;
+   9          sbit row2= P1^1;
+  10          sbit row3= P1^2;
+  11          sbit row4= P1^3;
+  12          unsigned char code keytable[4][4]={0 ,1 ,2 ,3 ,
+  13                                                                             4 ,5 ,6 ,7 ,
+  14                                                                             8 ,9 ,0x10,0x11,
+  15                                                                             0x12,0x13,0x14,0x15
+  16                                                                             };
+  17          
+  18          
+  19          void main(void)
+  20          {
+  21   1         unsigned char col,rowno;
+  22   1         P1=0xf0;      //make cols high and rows low
+  23   1      
+  24   1         while(1)
+  25   1         {
+  26   2          do
+  27   2              {
+  28   3                      P1=0xf0;
+  29   3                      col=P1;
+  30   3                      col &=0xf0;
+  31   3              }while(col != 0xf0);
+  32   2              do
+  33   2              {
+  34   3                      do
+  35   3                      {
+  36   4                       col=P1;
+  37   4                       col &=0xf0;
+  38   4                      }while(col == 0xf0); 
+  39   3                      delay();
+  40   3                      col=P1;
+  41   3                      col &=0xf0;
+  42   3              }while(col == 0xf0);
+  43   2              P1 |= 0xf0;
+  44   2              while(1)
+  45   2              {
+  46   3                row1=0;row2=1;row3=1;row4=1;
+  47   3                col=P1;
+  48   3                col &=0xf0;
+  49   3                if(col != 0xf0)
+  50   3                {
+  51   4                      rowno=0;
+  52   4                      break;
+  53   4                }
+  54   3                row1=1;row2=0;row3=1;row4=1;
+  55   3                col=P1;
+C51 COMPILER V8.09   MAIN                                                                  11/16/2008 17:29:50 PAGE 2   
+
+  56   3                col &=0xf0;
+  57   3                if(col != 0xf0)
+  58   3                {
+  59   4                      rowno=1;
+  60   4                      break;
+  61   4                }
+  62   3                row1=1;row2=1;row3=0;row4=1;
+  63   3                col=P1;
+  64   3                col &=0xf0;
+  65   3                if(col != 0xf0)
+  66   3                {
+  67   4                      rowno=2;
+  68   4                      break;
+  69   4                }
+  70   3                row1=1;row2=1;row3=1;row4=0;
+  71   3                col=P1;
+  72   3                col &=0xf0;
+  73   3                if(col != 0xf0)
+  74   3                {
+  75   4                      rowno=3;
+  76   4                      break;
+  77   4                }
+  78   3              }
+  79   2              if(col == 0xe0)
+  80   2              show(keytable[rowno][0]);
+  81   2              else if(col == 0xd0)
+  82   2              show(keytable[rowno][1]);
+  83   2              else if(col == 0xb0) 
+  84   2              show(keytable[rowno][2]);
+  85   2              else if(col == 0x70)  
+  86   2              show(keytable[rowno][3]);
+  87   2         }
+  88   1      
+  89   1      }
+  90          void show(unsigned char key)
+  91          {
+  92   1              unsigned char b;
+  93   1              b= key >> 4;
+  94   1              b |= key << 4;
+  95   1              P0=b;
+  96   1      }
+  97          void delay(void)
+  98          {
+  99   1              unsigned char a,b;
+ 100   1              for(a=0;a<20;a++)
+ 101   1               for(b=0;b<120;b++);
+ 102   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    274    ----
+   CONSTANT SIZE    =     16    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       2
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
