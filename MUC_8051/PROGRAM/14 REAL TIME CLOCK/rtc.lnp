@@ -1,4 +1,0 @@
-"STARTUP.obj",
-"main.obj" 
-TO "rtc" 
-RAMSIZE(256) 

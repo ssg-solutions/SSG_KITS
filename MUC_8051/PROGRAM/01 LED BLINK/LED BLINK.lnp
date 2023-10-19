@@ -1,4 +1,0 @@
-"STARTUP.obj",
-"main.obj" 
-TO "LED BLINK" 
-RAMSIZE(256) 

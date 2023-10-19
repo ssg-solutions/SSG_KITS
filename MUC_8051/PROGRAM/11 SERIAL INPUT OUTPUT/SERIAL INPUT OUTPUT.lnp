@@ -1,4 +1,0 @@
-"STARTUP.obj",
-"main.obj" 
-TO "SERIAL INPUT OUTPUT" 
-RAMSIZE(256) 
