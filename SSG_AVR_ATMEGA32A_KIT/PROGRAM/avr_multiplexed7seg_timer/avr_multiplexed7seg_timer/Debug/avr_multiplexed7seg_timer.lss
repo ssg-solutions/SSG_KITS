@@ -1,0 +1,345 @@
+
+avr_multiplexed7seg_timer.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000001f4  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000000  00800060  00800060  00000268  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000003  00800060  00800060  00000268  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  00000268  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000298  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000030  00000000  00000000  000002d4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   0000078f  00000000  00000000  00000304  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 00000607  00000000  00000000  00000a93  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00000309  00000000  00000000  0000109a  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  00000060  00000000  00000000  000013a4  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    00000371  00000000  00000000  00001404  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    000001d8  00000000  00000000  00001775  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000020  00000000  00000000  0000194d  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+   8:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+   c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  10:	0c 94 a2 00 	jmp	0x144	; 0x144 <__vector_4>
+  14:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  18:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  1c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  20:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  24:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  28:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  2c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  30:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  34:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  38:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  3c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  40:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  44:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  48:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  4c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  50:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_clear_bss>:
+  60:	20 e0       	ldi	r18, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	01 c0       	rjmp	.+2      	; 0x6a <.do_clear_bss_start>
+
+00000068 <.do_clear_bss_loop>:
+  68:	1d 92       	st	X+, r1
+
+0000006a <.do_clear_bss_start>:
+  6a:	a3 36       	cpi	r26, 0x63	; 99
+  6c:	b2 07       	cpc	r27, r18
+  6e:	e1 f7       	brne	.-8      	; 0x68 <.do_clear_bss_loop>
+  70:	0e 94 d0 00 	call	0x1a0	; 0x1a0 <main>
+  74:	0c 94 f8 00 	jmp	0x1f0	; 0x1f0 <_exit>
+
+00000078 <__bad_interrupt>:
+  78:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+0000007c <multi_seg>:
+
+uint8_t cnt =0;
+uint16_t number = 0;
+
+void multi_seg(uint16_t num)
+{
+  7c:	ac 01       	movw	r20, r24
+	PORTB=((seg_4)|(num/1000));
+  7e:	9c 01       	movw	r18, r24
+  80:	36 95       	lsr	r19
+  82:	27 95       	ror	r18
+  84:	36 95       	lsr	r19
+  86:	27 95       	ror	r18
+  88:	36 95       	lsr	r19
+  8a:	27 95       	ror	r18
+  8c:	a5 ec       	ldi	r26, 0xC5	; 197
+  8e:	b0 e2       	ldi	r27, 0x20	; 32
+  90:	0e 94 e9 00 	call	0x1d2	; 0x1d2 <__umulhisi3>
+  94:	92 95       	swap	r25
+  96:	82 95       	swap	r24
+  98:	8f 70       	andi	r24, 0x0F	; 15
+  9a:	89 27       	eor	r24, r25
+  9c:	9f 70       	andi	r25, 0x0F	; 15
+  9e:	89 27       	eor	r24, r25
+  a0:	28 2f       	mov	r18, r24
+  a2:	20 61       	ori	r18, 0x10	; 16
+  a4:	28 bb       	out	0x18, r18	; 24
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+  a6:	21 e2       	ldi	r18, 0x21	; 33
+  a8:	2a 95       	dec	r18
+  aa:	f1 f7       	brne	.-4      	; 0xa8 <multi_seg+0x2c>
+  ac:	00 00       	nop
+	_delay_us(100);
+	
+	num%=1000;
+  ae:	68 ee       	ldi	r22, 0xE8	; 232
+  b0:	73 e0       	ldi	r23, 0x03	; 3
+  b2:	86 9f       	mul	r24, r22
+  b4:	90 01       	movw	r18, r0
+  b6:	87 9f       	mul	r24, r23
+  b8:	30 0d       	add	r19, r0
+  ba:	96 9f       	mul	r25, r22
+  bc:	30 0d       	add	r19, r0
+  be:	11 24       	eor	r1, r1
+  c0:	42 1b       	sub	r20, r18
+  c2:	53 0b       	sbc	r21, r19
+	PORTB=((seg_3)|(num/100));
+  c4:	9a 01       	movw	r18, r20
+  c6:	36 95       	lsr	r19
+  c8:	27 95       	ror	r18
+  ca:	36 95       	lsr	r19
+  cc:	27 95       	ror	r18
+  ce:	ab e7       	ldi	r26, 0x7B	; 123
+  d0:	b4 e1       	ldi	r27, 0x14	; 20
+  d2:	0e 94 e9 00 	call	0x1d2	; 0x1d2 <__umulhisi3>
+  d6:	96 95       	lsr	r25
+  d8:	87 95       	ror	r24
+  da:	28 2f       	mov	r18, r24
+  dc:	20 62       	ori	r18, 0x20	; 32
+  de:	28 bb       	out	0x18, r18	; 24
+  e0:	21 e2       	ldi	r18, 0x21	; 33
+  e2:	2a 95       	dec	r18
+  e4:	f1 f7       	brne	.-4      	; 0xe2 <multi_seg+0x66>
+  e6:	00 00       	nop
+	_delay_us(100);
+	
+	num%=100;
+  e8:	64 e6       	ldi	r22, 0x64	; 100
+  ea:	68 9f       	mul	r22, r24
+  ec:	90 01       	movw	r18, r0
+  ee:	69 9f       	mul	r22, r25
+  f0:	30 0d       	add	r19, r0
+  f2:	11 24       	eor	r1, r1
+  f4:	42 1b       	sub	r20, r18
+  f6:	53 0b       	sbc	r21, r19
+	PORTB=((seg_2)|(num/10));
+  f8:	9a 01       	movw	r18, r20
+  fa:	ad ec       	ldi	r26, 0xCD	; 205
+  fc:	bc ec       	ldi	r27, 0xCC	; 204
+  fe:	0e 94 e9 00 	call	0x1d2	; 0x1d2 <__umulhisi3>
+ 102:	96 95       	lsr	r25
+ 104:	87 95       	ror	r24
+ 106:	96 95       	lsr	r25
+ 108:	87 95       	ror	r24
+ 10a:	96 95       	lsr	r25
+ 10c:	87 95       	ror	r24
+ 10e:	28 2f       	mov	r18, r24
+ 110:	20 64       	ori	r18, 0x40	; 64
+ 112:	28 bb       	out	0x18, r18	; 24
+ 114:	21 e2       	ldi	r18, 0x21	; 33
+ 116:	2a 95       	dec	r18
+ 118:	f1 f7       	brne	.-4      	; 0x116 <multi_seg+0x9a>
+ 11a:	00 00       	nop
+	_delay_us(100);
+	
+	num%=10;
+	PORTB=((seg_1)|(num));
+ 11c:	9c 01       	movw	r18, r24
+ 11e:	22 0f       	add	r18, r18
+ 120:	33 1f       	adc	r19, r19
+ 122:	88 0f       	add	r24, r24
+ 124:	99 1f       	adc	r25, r25
+ 126:	88 0f       	add	r24, r24
+ 128:	99 1f       	adc	r25, r25
+ 12a:	88 0f       	add	r24, r24
+ 12c:	99 1f       	adc	r25, r25
+ 12e:	82 0f       	add	r24, r18
+ 130:	93 1f       	adc	r25, r19
+ 132:	48 1b       	sub	r20, r24
+ 134:	59 0b       	sbc	r21, r25
+ 136:	40 68       	ori	r20, 0x80	; 128
+ 138:	48 bb       	out	0x18, r20	; 24
+ 13a:	81 e2       	ldi	r24, 0x21	; 33
+ 13c:	8a 95       	dec	r24
+ 13e:	f1 f7       	brne	.-4      	; 0x13c <multi_seg+0xc0>
+ 140:	00 00       	nop
+ 142:	08 95       	ret
+
+00000144 <__vector_4>:
+	_delay_us(100);
+}
+
+ISR(TIMER2_COMP_vect)
+{
+ 144:	1f 92       	push	r1
+ 146:	0f 92       	push	r0
+ 148:	0f b6       	in	r0, 0x3f	; 63
+ 14a:	0f 92       	push	r0
+ 14c:	11 24       	eor	r1, r1
+ 14e:	2f 93       	push	r18
+ 150:	8f 93       	push	r24
+ 152:	9f 93       	push	r25
+	cli();
+ 154:	f8 94       	cli
+	cnt++;
+ 156:	80 91 62 00 	lds	r24, 0x0062	; 0x800062 <cnt>
+ 15a:	8f 5f       	subi	r24, 0xFF	; 255
+	if(cnt>4)
+ 15c:	85 30       	cpi	r24, 0x05	; 5
+ 15e:	18 f4       	brcc	.+6      	; 0x166 <__vector_4+0x22>
+}
+
+ISR(TIMER2_COMP_vect)
+{
+	cli();
+	cnt++;
+ 160:	80 93 62 00 	sts	0x0062, r24	; 0x800062 <cnt>
+ 164:	14 c0       	rjmp	.+40     	; 0x18e <__vector_4+0x4a>
+	if(cnt>4)
+	{
+		cnt=0;
+ 166:	10 92 62 00 	sts	0x0062, r1	; 0x800062 <cnt>
+		number++;
+ 16a:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <__DATA_REGION_ORIGIN__>
+ 16e:	90 91 61 00 	lds	r25, 0x0061	; 0x800061 <__DATA_REGION_ORIGIN__+0x1>
+ 172:	01 96       	adiw	r24, 0x01	; 1
+		if(number >9999)
+ 174:	80 31       	cpi	r24, 0x10	; 16
+ 176:	27 e2       	ldi	r18, 0x27	; 39
+ 178:	92 07       	cpc	r25, r18
+ 17a:	28 f4       	brcc	.+10     	; 0x186 <__vector_4+0x42>
+	cli();
+	cnt++;
+	if(cnt>4)
+	{
+		cnt=0;
+		number++;
+ 17c:	90 93 61 00 	sts	0x0061, r25	; 0x800061 <__DATA_REGION_ORIGIN__+0x1>
+ 180:	80 93 60 00 	sts	0x0060, r24	; 0x800060 <__DATA_REGION_ORIGIN__>
+ 184:	04 c0       	rjmp	.+8      	; 0x18e <__vector_4+0x4a>
+		if(number >9999)
+		number =0;
+ 186:	10 92 61 00 	sts	0x0061, r1	; 0x800061 <__DATA_REGION_ORIGIN__+0x1>
+ 18a:	10 92 60 00 	sts	0x0060, r1	; 0x800060 <__DATA_REGION_ORIGIN__>
+	}
+	sei();
+ 18e:	78 94       	sei
+}
+ 190:	9f 91       	pop	r25
+ 192:	8f 91       	pop	r24
+ 194:	2f 91       	pop	r18
+ 196:	0f 90       	pop	r0
+ 198:	0f be       	out	0x3f, r0	; 63
+ 19a:	0f 90       	pop	r0
+ 19c:	1f 90       	pop	r1
+ 19e:	18 95       	reti
+
+000001a0 <main>:
+
+int main(void)
+{
+	DDRB=0xff;
+ 1a0:	9f ef       	ldi	r25, 0xFF	; 255
+ 1a2:	97 bb       	out	0x17, r25	; 23
+	PORTB=0x00;
+ 1a4:	18 ba       	out	0x18, r1	; 24
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 1a6:	e3 ed       	ldi	r30, 0xD3	; 211
+ 1a8:	f0 e3       	ldi	r31, 0x30	; 48
+ 1aa:	31 97       	sbiw	r30, 0x01	; 1
+ 1ac:	f1 f7       	brne	.-4      	; 0x1aa <main+0xa>
+ 1ae:	00 c0       	rjmp	.+0      	; 0x1b0 <main+0x10>
+ 1b0:	00 00       	nop
+	_delay_ms(50);
+	
+	TCCR2|=((1<<WGM21)|(1<<CS22)|(1<<CS21)|(1<<CS20));// timer2 set in CTC mode and prescaled by 1024
+ 1b2:	85 b5       	in	r24, 0x25	; 37
+ 1b4:	8f 60       	ori	r24, 0x0F	; 15
+ 1b6:	85 bd       	out	0x25, r24	; 37
+	TIMSK |=(1<<OCIE2);
+ 1b8:	89 b7       	in	r24, 0x39	; 57
+ 1ba:	80 68       	ori	r24, 0x80	; 128
+ 1bc:	89 bf       	out	0x39, r24	; 57
+	OCR2=255;// system frequency is 1MHz, so, 1000000 / 1024 = 976.56 and 976 / 255 = 3.83, so the ISR will get called 4 times per second!
+ 1be:	93 bd       	out	0x23, r25	; 35
+	TCNT2=0;
+ 1c0:	14 bc       	out	0x24, r1	; 36
+	sei();
+ 1c2:	78 94       	sei
+	
+	while(1)
+	{
+		multi_seg(number);
+ 1c4:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <__DATA_REGION_ORIGIN__>
+ 1c8:	90 91 61 00 	lds	r25, 0x0061	; 0x800061 <__DATA_REGION_ORIGIN__+0x1>
+ 1cc:	0e 94 3e 00 	call	0x7c	; 0x7c <multi_seg>
+ 1d0:	f9 cf       	rjmp	.-14     	; 0x1c4 <main+0x24>
+
+000001d2 <__umulhisi3>:
+ 1d2:	a2 9f       	mul	r26, r18
+ 1d4:	b0 01       	movw	r22, r0
+ 1d6:	b3 9f       	mul	r27, r19
+ 1d8:	c0 01       	movw	r24, r0
+ 1da:	a3 9f       	mul	r26, r19
+ 1dc:	70 0d       	add	r23, r0
+ 1de:	81 1d       	adc	r24, r1
+ 1e0:	11 24       	eor	r1, r1
+ 1e2:	91 1d       	adc	r25, r1
+ 1e4:	b2 9f       	mul	r27, r18
+ 1e6:	70 0d       	add	r23, r0
+ 1e8:	81 1d       	adc	r24, r1
+ 1ea:	11 24       	eor	r1, r1
+ 1ec:	91 1d       	adc	r25, r1
+ 1ee:	08 95       	ret
+
+000001f0 <_exit>:
+ 1f0:	f8 94       	cli
+
+000001f2 <__stop_program>:
+ 1f2:	ff cf       	rjmp	.-2      	; 0x1f2 <__stop_program>
