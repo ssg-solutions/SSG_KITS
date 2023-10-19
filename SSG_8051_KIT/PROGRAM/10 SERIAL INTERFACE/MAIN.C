@@ -1,0 +1,45 @@
+/****************************************************
+       Lesson  : 10
+ 	   Neme    : SERIAL PORT
+	   Details : THIS PROGRAM WILL SHOW HOW TO INTERFACE WITH PC 
+	             SERIAL PORT
+******************************************************/
+#include<REG51.H>
+#include<stdio.h>
+//Fuction Prototypes
+void delay(unsigned int);
+void serial_init(void);
+
+
+// Program Starts Here
+void main()
+{
+  unsigned char a=0x0a;
+  serial_init();
+  while(1)
+  {
+   printf("This is Serial Test \n");
+   delay(100);
+  }
+}
+
+void serial_init()
+{
+	SCON = 0x50;	// Setup serial port control register Mode 1: 
+					// 8-bit uart var baud rate REN: enable receiver 
+	TMOD |= 0x20;   // Set M1 for 8-bit autoreload timer 	
+	TH1 = 0xFD;     // Set autoreload value for timer1 9600 baud 
+					// with 11.0592 MHz xtal 
+	TR1 = 1;        // Start timer 1 	
+	TI = 1;         // Set TI to indicate ready to xmit
+}
+
+void delay(unsigned int tt)
+{
+ 	unsigned int a,b;
+ 	for(a=0;a<tt;a++)
+		{
+			for(b=0;b<1000;b++)
+			;
+		}
+}

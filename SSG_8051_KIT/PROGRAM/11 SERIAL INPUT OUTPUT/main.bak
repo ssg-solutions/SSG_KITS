@@ -1,0 +1,54 @@
+/****************************************************
+       Lesson  : 11
+ 	   Neme    : SERIAL PORT
+	   Details : THIS PROGRAM WILL SHOW HOW TO INTERFACE WITH PC 
+	             SERIAL PORT
+******************************************************/
+#include<REG51.H>
+#include<stdio.h>
+//Fuction Prototypes
+void serial_init(void);
+
+
+// Program Starts Here
+void main()
+{
+  unsigned char a,b,c,tmp;
+  serial_init();
+  while(1)
+  {
+   printf("*************************** \n");
+   printf("FIND THE SUM OF TWO NUMBERS \n");
+   printf("*************************** \n");
+   printf("\n\n\n");
+   printf("Enter the First  No :- ");
+   while(!(a=_getkey()));
+   putchar(a);
+   printf("\n");
+   printf("Enter the Second No :- ");
+   while(!(b=_getkey()));
+   putchar(b);
+   printf("\n\n");
+   printf(" The Answer is      :- ");
+   c=(a & 0x0f)+(b & 0x0f);
+   tmp = c/10;
+   tmp |= 0x30;
+   printf("%c",tmp);
+   tmp = c%10;
+   tmp |= 0x30;
+   printf("%c",tmp);
+   printf("\n\n\n");
+   }
+	
+}
+void serial_init()
+{
+	SCON = 0x50;	// Setup serial port control register Mode 1: 
+					// 8-bit uart var baud rate REN: enable receiver 
+	TMOD |= 0x20;   // Set M1 for 8-bit autoreload timer 	
+	TH1 = 0xFD;     // Set autoreload value for timer1 9600 baud 
+					// with 11.0592 MHz xtal 	
+	TR1 = 1;        // Start timer 1 	
+	TI = 1;         // Set TI to indicate ready to xmit
+}
+

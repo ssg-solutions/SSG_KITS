@@ -1,0 +1,64 @@
+C51 COMPILER V9.60.7.0   NEW_STEPPER_MOTOR_ACW_FULL_STEPPING                               09/13/2023 22:29:34 PAGE 1   
+
+
+C51 COMPILER V9.60.7.0, COMPILATION OF MODULE NEW_STEPPER_MOTOR_ACW_FULL_STEPPING
+OBJECT MODULE PLACED IN .\Objects\NEW STEPPER MOTOR ACW FULL STEPPING.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE NEW STEPPER MOTOR ACW FULL STEPPING.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJ
+                    -ECTEXTEND PRINT(.\Listings\NEW STEPPER MOTOR ACW FULL STEPPING.lst) TABS(2) OBJECT(.\Objects\NEW STEPPER MOTOR ACW FULL 
+                    -STEPPING.obj)
+
+line level    source
+
+   1          #include<reg51.h>
+   2          sbit stepper1=P1^0;
+   3          sbit stepper2=P1^1;
+   4          sbit stepper3=P1^2;
+   5          sbit stepper4=P1^3;
+   6          void delay(unsigned int count) { 
+   7   1          unsigned int i, j; 
+   8   1          for (i = 0; i < count; i++) 
+   9   1              for (j = 0; j < 500; j++); 
+  10   1      } 
+  11          
+  12          void main()
+  13          {
+  14   1        delay(50);
+  15   1      while(1)
+  16   1      {
+  17   2        
+  18   2      stepper1 = 1;
+  19   2      stepper2 = 0;
+  20   2      stepper3 = 0;
+  21   2      stepper4 = 0;
+  22   2        delay(5);
+  23   2        stepper1 = 0;
+  24   2      stepper2 = 1;
+  25   2      stepper3 = 0;
+  26   2      stepper4 = 0;
+  27   2        delay(5);
+  28   2        stepper1 = 0;
+  29   2      stepper2 = 0;
+  30   2      stepper3 = 1;
+  31   2      stepper4 = 0;
+  32   2        delay(5);
+  33   2        stepper1 = 0;
+  34   2      stepper2 = 0;
+  35   2      stepper3 = 0;
+  36   2      stepper4 = 1;
+  37   2        delay(5);
+  38   2      }
+  39   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     89    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,87 @@
+/****************************************************
+       Lesson  : 8
+ 	   Neme    : LCD Interface
+	   Details : The LCD has two line and each line has 16 character
+	   			 the lcd works here 4 bit mode 
+				 the display show "welcome" on first line
+				 and "have a nice day" on second line 
+******************************************************/
+#include<REG51.H>
+//Fuction Prototypes
+void delay(unsigned int);
+void lcd_string(unsigned char *p);
+void lcd_data(unsigned char );
+void lcd_cmd(unsigned char );
+
+
+sbit EN = P3^2;
+sbit RS = P3^3;
+sbit RW = P3^4;
+sbit light = P3^5;
+
+#define lcddata P1; 
+// Program Starts Here
+void main()
+{
+
+	 
+	 light=0; //ON the lcd light
+	 lcd_cmd(0x38);
+	 delay(1);
+	 lcd_cmd(0x06);	// display move cursor to right	
+	 delay(1);
+	 lcd_cmd(0x0E);	// LCD On, & cursor	on
+	 delay(1);
+	 lcd_cmd(0x01);	 // LCD Clear 
+	 delay(1);
+	 lcd_cmd(0x80);	// LCD start 1st line
+	 delay(1);
+	 lcd_string("    WELCOME     ");
+	 delay(25);
+	 lcd_cmd(0xc0);	 // LCD start 2nd line
+	 delay(1);
+     lcd_string("HAVE A NICE DAY ");
+	 while(1);
+	
+}
+
+void lcd_string(unsigned char *p)
+{
+	while(*p != '\0')
+	{
+	lcd_data(*p);
+	p++;
+	delay(10);
+	}
+}
+
+void lcd_data(unsigned char x)
+{
+  RW=0;
+  RS=1;
+  P1 = x;
+  EN=1;
+  delay(1);
+  EN=0;
+ }
+
+void lcd_cmd(unsigned char z)
+{
+  RW=0;
+  RS=0;
+  P1 = z;
+  EN =1;
+  delay(1);
+  EN=0;
+ }
+
+
+void delay(unsigned int tt)
+{
+ 	unsigned int a,b;
+ 	for(a=0;a<tt;a++)
+		{
+			for(b=0;b<1275;b++)
+			;
+		}
+}

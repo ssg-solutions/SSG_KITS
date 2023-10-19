@@ -1,0 +1,4 @@
+"STARTUP.obj",
+"MAIN.obj" 
+TO "7 SEG WITH BUTTON" 
+RAMSIZE(256) 

@@ -1,0 +1,79 @@
+C51 COMPILER V8.09   MAIN                                                                  08/28/2008 20:27:59 PAGE 1   
+
+
+C51 COMPILER V8.09, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN main.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE main.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          /****************************************************
+   2                 Lesson  : 11
+   3                     Neme    : SERIAL PORT
+   4                     Details : THIS PROGRAM WILL SHOW HOW TO INTERFACE WITH PC 
+   5                               SERIAL PORT
+   6          ******************************************************/
+   7          #include<REG51.H>
+   8          #include<stdio.h>
+   9          //Fuction Prototypes
+  10          void serial_init(void);
+  11          
+  12          
+  13          // Program Starts Here
+  14          void main()
+  15          {
+  16   1        unsigned char a,b,c,tmp;
+  17   1        serial_init();
+  18   1        while(1)
+  19   1        {
+  20   2         printf("*************************** \n");
+  21   2         printf("FIND THE SUM OF TWO NUMBERS \n");
+  22   2         printf("*************************** \n");
+  23   2         printf("\n\n");
+  24   2         printf("Enter the First  No :- ");
+  25   2         while(!(a=_getkey()));
+  26   2         putchar(a);
+  27   2         printf("\n");
+  28   2         printf("Enter the Second No :- ");
+  29   2         while(!(b=_getkey()));
+  30   2         putchar(b);
+  31   2         printf("\n\n");
+  32   2         printf(" The Answer is      :- ");
+  33   2         c=(a & 0x0f)+(b & 0x0f);
+  34   2         tmp = c/10;
+  35   2         tmp |= 0x30;
+  36   2         printf("%c",tmp);
+  37   2         tmp = c%10;
+  38   2         tmp |= 0x30;
+  39   2         printf("%c",tmp);
+  40   2         printf("\n\n\n");
+  41   2         }
+  42   1              
+  43   1      }
+  44          void serial_init()
+  45          {
+  46   1              SCON = 0x50;    // Setup serial port control register Mode 1: 
+  47   1                                              // 8-bit uart var baud rate REN: enable receiver 
+  48   1              TMOD |= 0x20;   // Set M1 for 8-bit autoreload timer    
+  49   1              TH1 = 0xFD;     // Set autoreload value for timer1 9600 baud 
+  50   1                                              // with 11.0592 MHz xtal        
+  51   1              TR1 = 1;        // Start timer 1        
+  52   1              TI = 1;         // Set TI to indicate ready to xmit
+  53   1      }
+  54          
+
+C51 COMPILER V8.09   MAIN                                                                  08/28/2008 20:27:59 PAGE 2   
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    193    ----
+   CONSTANT SIZE    =    144    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       4
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
