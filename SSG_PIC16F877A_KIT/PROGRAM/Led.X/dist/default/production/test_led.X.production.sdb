@@ -1,0 +1,35 @@
+[p GLOBOPT AUTOSTATIC IEEE_DBL IEEE_FLT PIC14 PICREGULAR PICMID ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip 16F877A ]
+[d frameptr 0 ]
+"10 C:\Program Files\Microchip\xc8\v2.45\pic\sources\c99\common\sprcadd.c
+[v ___fladd __fladd `(d  1 e 4 0 ]
+"4 C:\Program Files\Microchip\xc8\v2.45\pic\sources\c99\common\Umul8_16.c
+[v __Umul8_16 _Umul8_16 `(ui  1 e 2 0 ]
+"6 C:\Program Files\Microchip\xc8\v2.45\pic\sources\c99\pic\__eeprom.c
+[v ___eecpymem __eecpymem `(v  1 e 1 0 ]
+"39
+[v ___memcpyee __memcpyee `(v  1 e 1 0 ]
+"29 D:\pic_program\test_led.X\main.c
+[v _main main `(i  1 e 2 0 ]
+"44
+[v _init_config init_config `(v  1 e 1 0 ]
+"278 C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f877a.h
+[v _PORTC PORTC `VEuc  1 e 1 @7 ]
+"1437
+[v _TRISC TRISC `VEuc  1 e 1 @135 ]
+"29 D:\pic_program\test_led.X\main.c
+[v _main main `(i  1 e 2 0 ]
+{
+"32
+[v main@delay delay `ui  1 a 2 0 ]
+"33
+[v main@led_mask led_mask `uc  1 a 1 2 ]
+"43
+} 0
+"44
+[v _init_config init_config `(v  1 e 1 0 ]
+{
+"48
+} 0
