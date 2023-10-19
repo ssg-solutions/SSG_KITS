@@ -1,0 +1,4 @@
+--device DARMP "startup.o" "stepper.o" --strict --scatter "steppermot.sct" 
+--autoat --summary_stderr --info summarysizes --map --xref --callgraph --symbols 
+--info sizes --info totals --info unused --info veneers 
+ --list ".\steppermot.map" -o "steppermot.axf"

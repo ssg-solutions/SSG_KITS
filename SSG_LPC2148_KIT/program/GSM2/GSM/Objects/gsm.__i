@@ -1,0 +1,1 @@
+-c --device DARMP -D__EVAL -g -O0 --apcs=interwork --split_sections -I "C:\Keil_v5\ARM\INC\Philips" -o ".\Objects\gsm.o" --omf_browse ".\Objects\gsm.crf" --depend ".\Objects\gsm.d" "GSM.c"

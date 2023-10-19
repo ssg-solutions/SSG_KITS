@@ -1,0 +1,10 @@
+.\Objects\dht11.o: modules\dht11\dht11.c
+.\Objects\dht11.o: .\lib\system\system.h
+.\Objects\dht11.o: .\lib\system\LPC214x.H
+.\Objects\dht11.o: .\lib\irq\irq.h
+.\Objects\dht11.o: C:\Keil_v5\ARM\RV31\INC\stdint.h
+.\Objects\dht11.o: .\lib\delay\delay.h
+.\Objects\dht11.o: .\lib\gpio\gpio.h
+.\Objects\dht11.o: .\lib\system\target.h
+.\Objects\dht11.o: C:\Keil_v5\ARM\RV31\INC\stdio.h
+.\Objects\dht11.o: modules\dht11\dht11.h

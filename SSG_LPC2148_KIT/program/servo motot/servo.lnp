@@ -1,0 +1,4 @@
+--device DARMP "startup.o" "servomot.o" --strict --scatter "servo.sct" 
+--autoat --summary_stderr --info summarysizes --map --xref --callgraph --symbols 
+--info sizes --info totals --info unused --info veneers 
+ --list ".\servo.map" -o "servo.axf"

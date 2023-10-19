@@ -1,0 +1,4 @@
+--device DARMP "startup.o" "7seg.o" --strict --scatter "SEVEN SEGMENT.sct" 
+--autoat --summary_stderr --info summarysizes --map --xref --callgraph --symbols 
+--info sizes --info totals --info unused --info veneers 
+ --list ".\SEVEN SEGMENT.map" -o "SEVEN SEGMENT.axf"

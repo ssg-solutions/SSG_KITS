@@ -1,0 +1,13 @@
+.\Objects\gsm.o: modules\gsm\gsm.c
+.\Objects\gsm.o: .\lib\system\system.h
+.\Objects\gsm.o: .\lib\system\LPC214x.H
+.\Objects\gsm.o: .\lib\irq\irq.h
+.\Objects\gsm.o: C:\Keil_v5\ARM\RV31\INC\stdint.h
+.\Objects\gsm.o: .\lib\delay\delay.h
+.\Objects\gsm.o: .\lib\gpio\gpio.h
+.\Objects\gsm.o: .\lib\system\target.h
+.\Objects\gsm.o: C:\Keil_v5\ARM\RV31\INC\stdio.h
+.\Objects\gsm.o: modules\gsm\gsm.h
+.\Objects\gsm.o: .\lib\serial\serial.h
+.\Objects\gsm.o: .\modules\lcd\lcd.h
+.\Objects\gsm.o: .\lib\nstring\Nstring.h

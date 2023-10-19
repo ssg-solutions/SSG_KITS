@@ -1,0 +1,13 @@
+.\Objects\oled.o: modules\SSD1306\oled.c
+.\Objects\oled.o: .\lib\system\system.h
+.\Objects\oled.o: .\lib\system\LPC214x.H
+.\Objects\oled.o: .\lib\irq\irq.h
+.\Objects\oled.o: C:\Keil_v5\ARM\RV31\INC\stdint.h
+.\Objects\oled.o: .\lib\delay\delay.h
+.\Objects\oled.o: .\lib\gpio\gpio.h
+.\Objects\oled.o: .\lib\system\target.h
+.\Objects\oled.o: C:\Keil_v5\ARM\RV31\INC\stdio.h
+.\Objects\oled.o: .\lib\i2c\i2c.h
+.\Objects\oled.o: modules\SSD1306\oled.h
+.\Objects\oled.o: modules\SSD1306\fonts.h
+.\Objects\oled.o: .\lib\nstring\Nstring.h

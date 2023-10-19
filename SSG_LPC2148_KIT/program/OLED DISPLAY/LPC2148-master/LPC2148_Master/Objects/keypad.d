@@ -1,0 +1,10 @@
+.\Objects\keypad.o: modules\keypad\keypad.c
+.\Objects\keypad.o: .\lib\system\system.h
+.\Objects\keypad.o: .\lib\system\LPC214x.H
+.\Objects\keypad.o: .\lib\irq\irq.h
+.\Objects\keypad.o: C:\Keil_v5\ARM\RV31\INC\stdint.h
+.\Objects\keypad.o: .\lib\delay\delay.h
+.\Objects\keypad.o: .\lib\gpio\gpio.h
+.\Objects\keypad.o: .\lib\system\target.h
+.\Objects\keypad.o: C:\Keil_v5\ARM\RV31\INC\stdio.h
+.\Objects\keypad.o: modules\keypad\keypad.h

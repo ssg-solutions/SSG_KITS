@@ -1,0 +1,11 @@
+.\Objects\main.o: main.c
+.\Objects\main.o: .\lib\system\system.h
+.\Objects\main.o: .\lib\system\LPC214x.H
+.\Objects\main.o: .\lib\irq\irq.h
+.\Objects\main.o: C:\Keil_v5\ARM\RV31\INC\stdint.h
+.\Objects\main.o: .\lib\delay\delay.h
+.\Objects\main.o: .\lib\gpio\gpio.h
+.\Objects\main.o: .\lib\system\target.h
+.\Objects\main.o: C:\Keil_v5\ARM\RV31\INC\stdio.h
+.\Objects\main.o: demo.h
+.\Objects\main.o: .\lib\serial\serial.h

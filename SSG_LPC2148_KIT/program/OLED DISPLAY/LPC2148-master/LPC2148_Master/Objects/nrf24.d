@@ -1,0 +1,13 @@
+.\Objects\nrf24.o: modules\nrf24\nrf24.c
+.\Objects\nrf24.o: .\lib\system\system.h
+.\Objects\nrf24.o: .\lib\system\LPC214x.H
+.\Objects\nrf24.o: .\lib\irq\irq.h
+.\Objects\nrf24.o: C:\Keil_v5\ARM\RV31\INC\stdint.h
+.\Objects\nrf24.o: .\lib\delay\delay.h
+.\Objects\nrf24.o: .\lib\gpio\gpio.h
+.\Objects\nrf24.o: .\lib\system\target.h
+.\Objects\nrf24.o: C:\Keil_v5\ARM\RV31\INC\stdio.h
+.\Objects\nrf24.o: .\lib\serial\serial.h
+.\Objects\nrf24.o: .\lib\spi\spi.h
+.\Objects\nrf24.o: .\lib\extint\extint.h
+.\Objects\nrf24.o: modules\nrf24\nrf24.h

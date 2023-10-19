@@ -1,0 +1,4 @@
+--device DARMP "startup.o" "ledb.o" --strict --scatter "led blinks.sct" 
+--autoat --summary_stderr --info summarysizes --map --xref --callgraph --symbols 
+--info sizes --info totals --info unused --info veneers 
+ --list ".\led blinks.map" -o "led blinks.axf"

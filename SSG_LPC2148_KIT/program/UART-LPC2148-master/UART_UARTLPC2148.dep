@@ -1,0 +1,4 @@
+Dependencies for Project 'UART', Target 'UARTLPC2148': (DO NOT MODIFY !)
+F (.\Startup.s)(0x6503F6EE)(--device DARMP --pd "__EVAL SETA 1" -g --apcs=interwork -I "C:\Keil_v5\ARM\INC\Philips" --list "Startup.lst" --xref -o "Startup.o")
+F (.\uart.c)(0x6503F783)(-c --device DARMP -D__EVAL -g -O0 --apcs=interwork -I "C:\Keil_v5\ARM\INC\Philips" -o "uart.o" --omf_browse "uart.crf" --depend "uart.d")
+I (C:\Keil_v5\ARM\INC\Philips\lpc214x.h)(0x4A02A636)

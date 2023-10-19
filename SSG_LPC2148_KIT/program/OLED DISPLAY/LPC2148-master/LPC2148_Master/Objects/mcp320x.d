@@ -1,0 +1,10 @@
+.\Objects\mcp320x.o: modules\mcp320x\mcp320x.c
+.\Objects\mcp320x.o: .\lib\system\system.h
+.\Objects\mcp320x.o: .\lib\system\LPC214x.H
+.\Objects\mcp320x.o: .\lib\irq\irq.h
+.\Objects\mcp320x.o: C:\Keil_v5\ARM\RV31\INC\stdint.h
+.\Objects\mcp320x.o: .\lib\delay\delay.h
+.\Objects\mcp320x.o: .\lib\gpio\gpio.h
+.\Objects\mcp320x.o: .\lib\system\target.h
+.\Objects\mcp320x.o: C:\Keil_v5\ARM\RV31\INC\stdio.h
+.\Objects\mcp320x.o: .\lib\spi\spi.h

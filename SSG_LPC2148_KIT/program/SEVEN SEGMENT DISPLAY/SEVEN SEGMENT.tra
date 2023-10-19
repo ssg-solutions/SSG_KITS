@@ -1,0 +1,20 @@
+*** Creating Trace Output File 'SEVEN SEGMENT.tra' Ok.
+### Preparing for ADS-LD.
+### Creating ADS-LD Command Line
+### List of Objects: adding '"startup.o"'
+### List of Objects: adding '"7seg.o"'
+### ADS-LD Command completed:
+--device DARMP "startup.o" "7seg.o" --strict --scatter "SEVEN SEGMENT.sct" 
+--autoat --summary_stderr --info summarysizes --map --xref --callgraph --symbols 
+--info sizes --info totals --info unused --info veneers 
+ --list ".\SEVEN SEGMENT.map" -o "SEVEN SEGMENT.axf"### Preparing Environment (PrepEnvAds)
+### ADS-LD Output File: 'SEVEN SEGMENT.axf'
+### ADS-LD Command File: 'SEVEN SEGMENT.lnp'
+### Checking for dirty Components...
+### Creating CmdFile 'SEVEN SEGMENT.lnp', Handle=0x00000600
+### Writing '.lnp' file
+### ADS-LD Command file 'SEVEN SEGMENT.lnp' is ready.
+### ADS-LD: About to start ADS-LD Thread.
+### ADS-LD: executed with 0 errors
+### Updating obj list
+### LDADS_file() completed.

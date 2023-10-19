@@ -1,0 +1,40 @@
+*** Creating Trace Output File '.\Objects\LPC2148Master.tra' Ok.
+### Preparing for ADS-LD.
+### Creating ADS-LD Command Line
+### List of Objects: adding '".\objects\startup.o"'
+### List of Objects: adding '".\objects\adc.o"'
+### List of Objects: adding '".\objects\delay.o"'
+### List of Objects: adding '".\objects\gpio.o"'
+### List of Objects: adding '".\objects\irq.o"'
+### List of Objects: adding '".\objects\nstring.o"'
+### List of Objects: adding '".\objects\serial.o"'
+### List of Objects: adding '".\objects\i2c.o"'
+### List of Objects: adding '".\objects\spi.o"'
+### List of Objects: adding '".\objects\rtc.o"'
+### List of Objects: adding '".\objects\extint.o"'
+### List of Objects: adding '".\objects\main.o"'
+### List of Objects: adding '".\objects\demo.o"'
+### List of Objects: adding '".\objects\gsm.o"'
+### List of Objects: adding '".\objects\lcd.o"'
+### List of Objects: adding '".\objects\dht11.o"'
+### List of Objects: adding '".\objects\hcsr04.o"'
+### List of Objects: adding '".\objects\mcp320x.o"'
+### List of Objects: adding '".\objects\oled.o"'
+### List of Objects: adding '".\objects\keypad.o"'
+### List of Objects: adding '".\objects\nrf24.o"'
+### List of Objects: adding '".\objects\mpu6050.o"'
+### ADS-LD Command completed:
+--device DARMP ".\objects\startup.o" ".\objects\adc.o" ".\objects\delay.o" ".\objects\gpio.o" ".\objects\irq.o" ".\objects\nstring.o" ".\objects\serial.o" ".\objects\i2c.o" ".\objects\spi.o" ".\objects\rtc.o" ".\objects\extint.o" ".\objects\main.o" ".\objects\demo.o" ".\objects\gsm.o" ".\objects\lcd.o" ".\objects\dht11.o" ".\objects\hcsr04.o" ".\objects\mcp320x.o" ".\objects\oled.o" ".\objects\keypad.o" ".\objects\nrf24.o" ".\objects\mpu6050.o" --nodebug --strict --scatter ".\Objects\LPC2148Master.sct" 
+--autoat --summary_stderr --info summarysizes --map --xref --callgraph --symbols 
+--info sizes --info totals --info unused --info veneers 
+ --list ".\Listings\LPC2148Master.map" -o ".\Objects\LPC2148Master.axf"### Preparing Environment (PrepEnvAds)
+### ADS-LD Output File: '.\Objects\LPC2148Master.axf'
+### ADS-LD Command File: '.\Objects\LPC2148Master.lnp'
+### Checking for dirty Components...
+### Creating CmdFile '.\Objects\LPC2148Master.lnp', Handle=0x00000660
+### Writing '.lnp' file
+### ADS-LD Command file '.\Objects\LPC2148Master.lnp' is ready.
+### ADS-LD: About to start ADS-LD Thread.
+### ADS-LD: executed with 0 errors
+### Updating obj list
+### LDADS_file() completed.

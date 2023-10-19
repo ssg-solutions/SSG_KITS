@@ -1,0 +1,4 @@
+--device DARMP "startup.o" "dc.o" --strict --scatter "dcmot.sct" 
+--autoat --summary_stderr --info summarysizes --map --xref --callgraph --symbols 
+--info sizes --info totals --info unused --info veneers 
+ --list ".\dcmot.map" -o "dcmot.axf"

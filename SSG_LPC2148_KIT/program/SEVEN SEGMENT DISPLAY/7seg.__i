@@ -1,0 +1,1 @@
+-c --device DARMP -D__EVAL -g -O0 --apcs=interwork -I "C:\Keil_v5\ARM\INC\Philips" -o "7seg.o" --omf_browse "7seg.crf" --depend "7seg.d" "7seg.c"

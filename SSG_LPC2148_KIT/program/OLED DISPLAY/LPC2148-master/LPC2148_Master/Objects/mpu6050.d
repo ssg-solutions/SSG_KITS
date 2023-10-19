@@ -1,0 +1,11 @@
+.\Objects\mpu6050.o: modules\mpu6050\mpu6050.c
+.\Objects\mpu6050.o: .\lib\system\system.h
+.\Objects\mpu6050.o: .\lib\system\LPC214x.H
+.\Objects\mpu6050.o: .\lib\irq\irq.h
+.\Objects\mpu6050.o: C:\Keil_v5\ARM\RV31\INC\stdint.h
+.\Objects\mpu6050.o: .\lib\delay\delay.h
+.\Objects\mpu6050.o: .\lib\gpio\gpio.h
+.\Objects\mpu6050.o: .\lib\system\target.h
+.\Objects\mpu6050.o: C:\Keil_v5\ARM\RV31\INC\stdio.h
+.\Objects\mpu6050.o: .\lib\i2c\i2c.h
+.\Objects\mpu6050.o: modules\mpu6050\mpu6050.h

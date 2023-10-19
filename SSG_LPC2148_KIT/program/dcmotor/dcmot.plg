@@ -1,0 +1,17 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+C:\Users\Praful\Desktop\ARM7 STICK\collegeARM\PROGRAMS\dcmotor\dcmot.uvproj
+Project File Date:  09/23/2022
+
+<h2>Output:</h2>
+Build target 'Target 1'
+assembling Startup.s...
+compiling dc.c...
+dc.c(26): warning:  #1-D: last line of file ends without a newline
+linking...
+Program Size: Code=1296 RO-data=32 RW-data=4 ZI-data=1260  
+FromELF: creating hex file...
+"dcmot.axf" - 0 Error(s), 1 Warning(s).
