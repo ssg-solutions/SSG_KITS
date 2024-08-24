@@ -1,0 +1,7 @@
+Dependencies for Project 'lm35adc', Target 'Target 1': (DO NOT MODIFY !)
+F (.\Startup.s)(0x4A02A570)(--device DARMP --pd "__EVAL SETA 1" -g --apcs=interwork -I "C:\Keil_v5\ARM\INC\Philips" --list "Startup.lst" --xref -o "Startup.o")
+F (.\lm.c)(0x632D625E)(-c --device DARMP -D__EVAL -g -O0 --apcs=interwork -I "C:\Keil_v5\ARM\INC\Philips" -o "lm.o" --omf_browse "lm.crf" --depend "lm.d")
+I (C:\Keil_v5\ARM\INC\Philips\lpc214x.h)(0x4A02A636)
+I (C:\Keil_v5\ARM\RV31\INC\stdint.h)(0x4A02A792)
+I (C:\Keil_v5\ARM\RV31\INC\stdio.h)(0x4A02A792)
+I (C:\Keil_v5\ARM\RV31\INC\string.h)(0x4A02A792)
