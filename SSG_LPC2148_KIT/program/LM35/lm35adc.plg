@@ -1,0 +1,14 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+C:\Users\HP\Desktop\NEW_KIT\KIT\LPC2148\PROGRAMS\LM35\lm35adc.uvproj
+Project File Date:  09/23/2022
+
+<h2>Output:</h2>
+Build target 'Target 1'
+linking...
+Program Size: Code=7048 RO-data=212 RW-data=0 ZI-data=1256  
+FromELF: creating hex file...
+"lm35adc.axf" - 0 Error(s), 0 Warning(s).

@@ -1,0 +1,127 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+D:\SSG_FILES\SSG_PROJECT\SSG_DEVKIT_DOC\LPC_2148\LPC_KIT\LPC_KIT\program\LM35\LM35.uvproj
+Project File Date:  08/19/2024
+
+<h2>Output:</h2>
+Build target 'Target 1'
+assembling Startup.s...
+compiling LM35.C...
+LM35.C(6): warning:  #951-D: return type of function "main" must be "int"
+LM35.C(10): warning:  #223-D: function "Serial_Init" declared implicitly
+LM35.C(12): warning:  #223-D: function "Welcome" declared implicitly
+LM35.C(24): warning:  #192-D: unrecognized character escape sequence
+LM35.C(33): error:  #159: declaration is incompatible with previous "Welcome" (declared at line 12)
+LM35.C(35): error:  #8: missing closing quote
+LM35.C(36): error:  #29: expected an expression
+LM35.C(36): error:  #7: unrecognized token
+LM35.C(36): error:  #7: unrecognized token
+LM35.C(36): error:  #8: missing closing quote
+LM35.C(37): error:  #18: expected a ")"
+LM35.C(39): error:  #8: missing closing quote
+LM35.C(40): error:  #7: unrecognized token
+LM35.C(40): error:  #18: expected a ")"
+LM35.C(40): error:  #7: unrecognized token
+LM35.C(40): error:  #8: missing closing quote
+LM35.C(41): error:  #8: missing closing quote
+LM35.C(42): error:  #7: unrecognized token
+LM35.C(42): error:  #7: unrecognized token
+LM35.C(42): error:  #8: missing closing quote
+LM35.C(43): error:  #8: missing closing quote
+LM35.C(44): error:  #7: unrecognized token
+LM35.C(44): error:  #7: unrecognized token
+LM35.C(44): error:  #8: missing closing quote
+LM35.C(45): warning:  #12-D: parsing restarts here after previous syntax error
+LM35.C(46): error:  #8: missing closing quote
+LM35.C(47): error:  #18: expected a ")"
+LM35.C(47): error:  #7: unrecognized token
+LM35.C(47): error:  #7: unrecognized token
+LM35.C(47): error:  #7: unrecognized token
+LM35.C(47): error:  #8: missing closing quote
+LM35.C(48): error:  #8: missing closing quote
+LM35.C(49): error:  #7: unrecognized token
+LM35.C(49): error:  #7: unrecognized token
+LM35.C(49): error:  #8: missing closing quote
+Target not created
+Build target 'Target 1'
+compiling LM35.C...
+LM35.C(6): warning:  #951-D: return type of function "main" must be "int"
+LM35.C(10): warning:  #223-D: function "Serial_Init" declared implicitly
+LM35.C(12): warning:  #223-D: function "Welcome" declared implicitly
+LM35.C(24): warning:  #192-D: unrecognized character escape sequence
+LM35.C(33): error:  #159: declaration is incompatible with previous "Welcome" (declared at line 12)
+LM35.C(35): error:  #8: missing closing quote
+LM35.C(36): error:  #29: expected an expression
+LM35.C(36): error:  #7: unrecognized token
+LM35.C(36): error:  #7: unrecognized token
+LM35.C(36): error:  #8: missing closing quote
+LM35.C(37): error:  #18: expected a ")"
+LM35.C(39): error:  #8: missing closing quote
+LM35.C(40): error:  #7: unrecognized token
+LM35.C(40): error:  #18: expected a ")"
+LM35.C(40): error:  #7: unrecognized token
+LM35.C(40): error:  #8: missing closing quote
+LM35.C(41): error:  #8: missing closing quote
+LM35.C(42): error:  #7: unrecognized token
+LM35.C(42): error:  #7: unrecognized token
+LM35.C(42): error:  #8: missing closing quote
+LM35.C(43): error:  #8: missing closing quote
+LM35.C(44): error:  #7: unrecognized token
+LM35.C(44): error:  #7: unrecognized token
+LM35.C(44): error:  #8: missing closing quote
+LM35.C(45): warning:  #12-D: parsing restarts here after previous syntax error
+LM35.C(46): error:  #8: missing closing quote
+LM35.C(47): error:  #18: expected a ")"
+LM35.C(47): error:  #7: unrecognized token
+LM35.C(47): error:  #7: unrecognized token
+LM35.C(47): error:  #7: unrecognized token
+LM35.C(47): error:  #8: missing closing quote
+LM35.C(48): error:  #8: missing closing quote
+LM35.C(49): error:  #7: unrecognized token
+LM35.C(49): error:  #7: unrecognized token
+LM35.C(49): error:  #8: missing closing quote
+Target not created
+Build target 'Target 1'
+compiling LM35.C...
+LM35.C(10): warning:  #223-D: function "Serial_Init" declared implicitly
+LM35.C(12): warning:  #223-D: function "Welcome" declared implicitly
+LM35.C(24): warning:  #192-D: unrecognized character escape sequence
+LM35.C(33): error:  #159: declaration is incompatible with previous "Welcome" (declared at line 12)
+LM35.C(35): error:  #8: missing closing quote
+LM35.C(36): error:  #29: expected an expression
+LM35.C(36): error:  #7: unrecognized token
+LM35.C(36): error:  #7: unrecognized token
+LM35.C(36): error:  #8: missing closing quote
+LM35.C(37): error:  #18: expected a ")"
+LM35.C(39): error:  #8: missing closing quote
+LM35.C(40): error:  #7: unrecognized token
+LM35.C(40): error:  #18: expected a ")"
+LM35.C(40): error:  #7: unrecognized token
+LM35.C(40): error:  #8: missing closing quote
+LM35.C(41): error:  #8: missing closing quote
+LM35.C(42): error:  #7: unrecognized token
+LM35.C(42): error:  #7: unrecognized token
+LM35.C(42): error:  #8: missing closing quote
+LM35.C(43): error:  #8: missing closing quote
+LM35.C(44): error:  #7: unrecognized token
+LM35.C(44): error:  #7: unrecognized token
+LM35.C(44): error:  #8: missing closing quote
+LM35.C(45): warning:  #12-D: parsing restarts here after previous syntax error
+LM35.C(46): error:  #8: missing closing quote
+LM35.C(47): error:  #18: expected a ")"
+LM35.C(47): error:  #7: unrecognized token
+LM35.C(47): error:  #7: unrecognized token
+LM35.C(47): error:  #7: unrecognized token
+LM35.C(47): error:  #8: missing closing quote
+LM35.C(48): error:  #8: missing closing quote
+LM35.C(49): error:  #7: unrecognized token
+LM35.C(49): error:  #7: unrecognized token
+LM35.C(49): error:  #8: missing closing quote
+Target not created
+Build target 'Target 1'
+compiling LM35.C...
+LM35.C(3): error:  #5: cannot open source input file "lib_funcs.h": No such file or directory
+Target not created
