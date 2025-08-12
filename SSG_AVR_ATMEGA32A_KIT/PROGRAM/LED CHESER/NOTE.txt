@@ -1,1 +1,0 @@
-At the time of loading flash go to Fuse & Lock in PROGISP-------->Select JTAGEN------->Enable it by giving 1 value at place of 0.
